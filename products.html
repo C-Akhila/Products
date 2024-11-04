@@ -1,0 +1,43 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Products</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Products</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="cart.html">Cart</a>
+        </nav>
+    </header>
+    <main id="product-list"></main>
+    <script>
+        // Mock API
+        const products = [
+            { id: 1, name: "Product 1", price: 100, image: "IMG-20241101-WA0009.jpg" },
+            { id: 2, name: "Product 2", price: 150, image: "IMG-20241104-WA0005.jpg" },
+            { id: 3, name: "Product 3", price: 200, image: "IMG-20241104-WA0006.jpg" },
+            { id: 4, name: "Product 4", price: 250, image: "IMG-20241104-WA0007.jpg" },
+            { id: 5, name: "Product 5", price: 300, image: "IMG-20241104-WA0008.jpg" }
+        ];
+
+        const productList = document.getElementById("product-list");
+        products.forEach(product => {
+            productList.innerHTML += `
+                <div class="product">
+                    <img src="${product.image}" alt="${product.name}">
+                    <h3>${product.name}</h3>
+                    <p>$${product.price}</p>
+                    <a href="product.html?id=${product.id}" class="btn">View Details</a>
+                </div>
+            `;
+        });
+    </script>
+</body>
+</html>

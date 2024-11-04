@@ -1,0 +1,51 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Product Details</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <h1>Product Details</h1>
+        <nav>
+            <a href="index.html">Home</a>
+            <a href="products.html">Products</a>
+            <a href="cart.html">Cart</a>
+        </nav>
+    </header>
+    <main id="product-detail"></main>
+    <script>
+        const products = [
+            { id: 1, name: "Product 1", price: 100, image: "IMG-20241101-WA0009.jpg" , description: "This is a great product." },
+            { id: 2, name: "Product 2", price: 150, image: "IMG-20241104-WA0005.jpg", description: "This product is awesome." },
+            { id: 3, name: "Product 3", price: 200, image: "IMG-20241104-WA0006.jpg", description: "You will love this product." },
+            { id: 4, name: "Product 4", price: 250, image: "IMG-20241104-WA0007.jpg", description: "An excellent choice!" },
+            { id: 5, name: "Product 5", price: 300, image: "IMG-20241104-WA0008.jpg", description: "Best product on the market." }
+        ];
+
+        const urlParams = new URLSearchParams(window.location.search);
+        const productId = urlParams.get('id');
+        const product = products.find(p => p.id == productId);
+
+        if (product) {
+            document.getElementById("product-detail").innerHTML = `
+                <img src="${product.image}" alt="${product.name}">
+                <h2>${product.name}</h2>
+                <p>Price: $${product.price}</p>
+                <p>${product.description}</p>
+                <button id="add-to-cart" class="btn">Add to Cart</button>
+            `;
+
+            document.getElementById("add-to-cart").onclick = function() {
+                alert(`${product.name} added to cart!`);
+                window.location.href = 'checkout.html'; // Redirect to checkout
+            };
+        } else {
+            document.getElementById("product-detail").innerHTML = "<p>Product not found.</p>";
+        }
+    </script>
+</body>
+</html>
